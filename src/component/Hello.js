@@ -1,27 +1,30 @@
-//const Hello = function() {
-//    <p>Hello</p>
-//};
-
-import World from "./World";
-import styles from "./Hello.module.css";
-
-//const Hello = () => {
-//    <p>Hello</p>
-//};
-//export default Hello;
 
 export default function Hello() {
+    function showName() {
+        console.log("Mike");
+    }
+
+    function showAge(age) {
+        console.log(age);
+    }
+
+    function showText(txt) {
+
+        console.log(txt);
+    }
+
     return ( 
         <div>
-            <h1 style={
-                {
-                    color: '#f00',
-                    borderRigh : '12px solid #000',
-                    marginBottom : '50px',
-                    opacity: 1,
-                }
-            }>Hello</h1>
-            <div className={styles.box}> Hello </div>
+            <h1>Hello</h1>
+            <button onClick={showName}>Show name</button>
+            <button onClick={() => {
+                showAge(10);
+            }}>Show age</button>
+            <p></p>
+            <input type="text" onChange={(e)=> {
+               const txt = e.target.value;
+               showText(txt);
+            }}/>
         </div>
     );
 }
