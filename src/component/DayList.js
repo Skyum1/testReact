@@ -3,23 +3,15 @@ import { useEffect, useState } from "react";
 
 export default function DayList() {
     const [days,setDays] = useState([]);
-    const [count,setCount] = useState(0);
 
-    function onclick() {
-        setCount(count + 1);
-    }
-
-    function onclick2() {
-        setDays([
-            ...days,
-            {
-                id : Math.random(),
-                day:1,
-            }
-        ])
-    }
     useEffect(() => {
-        console.log("Count change");
+        fetch("http://localhost:3001/days")
+        .then(res => {
+            return res.json()
+        })
+        .then(data => {
+            setDays(data);
+        })
     }, []);
 
     return (
@@ -32,8 +24,6 @@ export default function DayList() {
                     </li> 
             ))}
         </ul>
-        <button onClick={onclick}>{count}</button>
-        <button onClick={onclick2}>daychange</button>
         </>
     );
 }
